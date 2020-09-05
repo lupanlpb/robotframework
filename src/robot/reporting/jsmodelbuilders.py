@@ -99,8 +99,7 @@ class SuiteBuilder(_Builder):
         stats = suite.statistics  # Access property only once
         return (stats.all.total,
                 stats.all.passed,
-                stats.critical.total,
-                stats.critical.passed)
+                stats.all.failed)
 
 
 class TestBuilder(_Builder):

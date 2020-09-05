@@ -161,10 +161,7 @@ window.testdata = function () {
         return {
             total: stats[0],
             totalPassed: stats[1],
-            totalFailed: stats[0] - stats[1],
-            critical: stats[2],
-            criticalPassed: stats[3],
-            criticalFailed: stats[2] - stats[3]
+            totalFailed: stats[2],
         };
     }
 

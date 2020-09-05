@@ -36,8 +36,6 @@ window.model = (function () {
         };
         suite.searchTestsByTag = function (tag) {
             return suite.searchTests(function (test) {
-                if (tag.info == "critical" || tag.info == "non-critical")
-                    return containsTagPattern(test.tags, tag.label);
                 if (tag.combined)
                     return containsTagPattern(test.tags, tag.combined);
                 return containsTag(test.tags, tag.label);
@@ -49,11 +47,6 @@ window.model = (function () {
         suite.allTests = function () {
             return suite.searchTests(function (test) {
                 return true;
-            });
-        };
-        suite.criticalTests = function () {
-            return suite.searchTests(function (test) {
-                return test.isCritical;
             });
         };
         return suite;
@@ -270,8 +263,10 @@ window.stats = (function () {
     }
 
     function calculatePercents(total, passed, failed) {
-        if (total == 0)
+        if (total == 0) {
             return [0.0, 0.0];
+        }
+
         var pass = 100.0 * passed / total;
         var fail = 100.0 * failed / total;
         if (pass > 0 && pass < 0.1)
